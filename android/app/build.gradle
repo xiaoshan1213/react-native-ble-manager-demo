@@ -137,9 +137,18 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url "http://dl.bintray.com/lukaville/maven"
+    }
+}
+
 dependencies {
+    implementation project(':react-native-fetch-blob')
+    implementation project(':react-native-file-selector')
     implementation project(':react-native-ble-manager')
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'com.android.support:design:27.1.1'
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:+"  // From node_modules
 }
