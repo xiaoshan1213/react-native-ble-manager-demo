@@ -96,9 +96,9 @@ export default class App extends Component {
   handleDiscoverPeripheral = data => {
     // console.log('BleManagerDiscoverPeripheral:', data);
     console.log(data.id, data.name);
-    // if(data.name !== 'mymac'){
-    //     return;
-    // }
+    if(data.name !== 'mymac'){
+        return;
+    }
     let id; //蓝牙连接id
     let macAddress; //蓝牙Mac地址
     if (Platform.OS == "android") {
@@ -339,13 +339,7 @@ export default class App extends Component {
     );
   };
 
-//   {this.renderWriteView(
-//     "写数据(writeWithoutResponse)：",
-//     "发送",
-//     BluetoothManager.writeWithoutResponseCharacteristicUUID,
-//     this.writeWithoutResponse,
-//     this.state.writeData
-//   )}
+
   renderFooter = () => {
     return (
       <View style={{ marginBottom: 30 }}>
@@ -358,7 +352,13 @@ export default class App extends Component {
                 this.write,
                 this.state.writeData
             )}
-
+            {this.renderWriteView(
+                "写数据(writeWithoutResponse)：",
+                "发送",
+                BluetoothManager.writeWithoutResponseCharacteristicUUID,
+                this.writeWithoutResponse,
+                this.state.writeData
+            )}
             {this.renderReceiveView(
               "data read：",
               "read",
@@ -443,7 +443,7 @@ export default class App extends Component {
             this.setState({ text: text });
           }}
         />
-        <Button title="select file" onPress={this.readFile} />
+        <Button title="select file" onPress={this.selectFile} />
         <Button title="write file" onPress={this.writeFile} />
       </View>
     );
@@ -517,7 +517,7 @@ export default class App extends Component {
         console.log("file selected: " + path);
         this.alert(path);
         RNFetchBlob.fs
-          .readFile(path, "utf8")
+          .readFile(path, "base64")
           .then(data => {
             this.alert("get the data:" + data);
             // this.alert(data);

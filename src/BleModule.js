@@ -147,20 +147,28 @@ export default class BleModule {
       item.characteristic = this.fullUUID(item.characteristic);
       if (Platform.OS == "android") {
         if (item.properties.Notify == "Notify") {
-          this.nofityServiceUUID.push(item.service);
-          this.nofityCharacteristicUUID.push(item.characteristic);
+          if(item.characteristic.includes('EC0E')){
+            this.nofityServiceUUID.push(item.service);
+            this.nofityCharacteristicUUID.push(item.characteristic);
+          }
         }
         if (item.properties.Read == "Read") {
-          this.readServiceUUID.push(item.service);
-          this.readCharacteristicUUID.push(item.characteristic);
+            if(item.characteristic.includes('EC0E')){
+                this.readServiceUUID.push(item.service);
+                this.readCharacteristicUUID.push(item.characteristic);
+              }
         }
         if (item.properties.Write == "Write") {
-          this.writeWithResponseServiceUUID.push(item.service);
-          this.writeWithResponseCharacteristicUUID.push(item.characteristic);
+            if(item.characteristic.includes('EC0E')){
+                this.writeWithResponseServiceUUID.push(item.service);
+                this.writeWithResponseCharacteristicUUID.push(item.characteristic);
+              }
         }
         if (item.properties.WriteWithoutResponse == "WriteWithoutResponse") {
-          this.writeWithoutResponseServiceUUID.push(item.service);
-          this.writeWithoutResponseCharacteristicUUID.push(item.characteristic);
+            if(item.characteristic.includes('EC0E')){
+                this.writeWithoutResponseServiceUUID.push(item.service);
+                this.writeWithoutResponseCharacteristicUUID.push(item.characteristic);
+              }
         }
       } else {
         //ios
@@ -297,15 +305,42 @@ export default class BleModule {
    * Write with response to the specified characteristic, you need to call retrieveServices method before.
    * */
   write(data, index = 0) {
+      //encode by base64
     Alert.alert('data is', data);
     var dataBytes = stringToBytes(data)
+    var fileSize = dataBytes.length
+    var markByte0 = stringToBytes("0");
+    var markByte1 = stringToBytes("1");
+    // Alert.alert(fileSize.toString(), fileSize.toString());
+    //1 byte for head, 19 byte for data
+    var encodeBytes = [];
+    var mark = 0;
+    for(var i = 0; i < fileSize; i++){
+        if(mark == 0){
+            if(i + 19 >= fileSize){
+                //last package
+                encodeBytes.push(markByte1[0]);
+                
+            }else{
+                //continue package
+                encodeBytes.push(markByte0[0]);
+            }
+            mark += 1;
+        }else{
+            encodeBytes.push(dataBytes[i]);
+            mark++;
+            if(mark == 20){
+                mark = 0;
+            }
+        }
+    }
     // data = this.addProtocol(data);   //在数据的头尾加入协议格式，如0A => FEFD010AFCFB，不同的蓝牙协议应作相应的更改
     return new Promise((resolve, reject) => {
       BleManager.write(
         this.peripheralId,
         this.writeWithResponseServiceUUID[index],
         this.writeWithResponseCharacteristicUUID[index],
-        dataBytes
+        encodeBytes
       )
         .then(() => {
           console.log("Write success: ", data.toString());
