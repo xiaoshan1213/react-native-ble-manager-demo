@@ -517,7 +517,7 @@ export default class App extends Component {
         console.log("file selected: " + path);
         this.alert(path);
         RNFetchBlob.fs
-          .readFile(path, "base64")
+          .readFile(path, 'base64')
           .then(data => {
             this.alert("get the data:" + data);
             // this.alert(data);

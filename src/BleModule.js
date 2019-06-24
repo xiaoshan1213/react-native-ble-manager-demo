@@ -308,14 +308,15 @@ export default class BleModule {
       //encode by base64
     Alert.alert('data is', data);
     var dataBytes = stringToBytes(data)
-    var fileSize = dataBytes.length
+    var fileSize = dataBytes.length;
     var markByte0 = stringToBytes("0");
     var markByte1 = stringToBytes("1");
     // Alert.alert(fileSize.toString(), fileSize.toString());
     //1 byte for head, 19 byte for data
     var encodeBytes = [];
     var mark = 0;
-    for(var i = 0; i < fileSize; i++){
+    var i = 0;
+    while(i < fileSize){
         if(mark == 0){
             if(i + 19 >= fileSize){
                 //last package
@@ -329,6 +330,7 @@ export default class BleModule {
         }else{
             encodeBytes.push(dataBytes[i]);
             mark++;
+            i++;
             if(mark == 20){
                 mark = 0;
             }
