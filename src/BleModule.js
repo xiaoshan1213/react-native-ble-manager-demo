@@ -143,8 +143,8 @@ export default class BleModule {
     this.nofityServiceUUID = [];
     this.nofityCharacteristicUUID = [];
     for (let item of peripheralInfo.characteristics) {
-      item.service = this.fullUUID(item.service);
-      item.characteristic = this.fullUUID(item.characteristic);
+    //   item.service = this.fullUUID(item.service);
+    //   item.characteristic = this.fullUUID(item.characteristic);
       if (Platform.OS == "android") {
         if (item.properties.Notify == "Notify") {
           if(item.characteristic.includes('EC0E')){
@@ -174,22 +174,30 @@ export default class BleModule {
         //ios
         for (let property of item.properties) {
           if (property == "Notify") {
-            this.nofityServiceUUID.push(item.service);
-            this.nofityCharacteristicUUID.push(item.characteristic);
+            if(item.characteristic.includes('EC0E')){
+                this.nofityServiceUUID.push(item.service);
+                this.nofityCharacteristicUUID.push(item.characteristic);
+            }
           }
           if (property == "Read") {
-            this.readServiceUUID.push(item.service);
-            this.readCharacteristicUUID.push(item.characteristic);
+            if(item.characteristic.includes('EC0E')){
+                this.readServiceUUID.push(item.service);
+                this.readCharacteristicUUID.push(item.characteristic);
+            }
           }
           if (property == "Write") {
-            this.writeWithResponseServiceUUID.push(item.service);
-            this.writeWithResponseCharacteristicUUID.push(item.characteristic);
+            if(item.characteristic.includes('EC0E')){
+                this.writeWithResponseServiceUUID.push(item.service);
+                this.writeWithResponseCharacteristicUUID.push(item.characteristic);
+            }
           }
           if (property == "WriteWithoutResponse") {
-            this.writeWithoutResponseServiceUUID.push(item.service);
-            this.writeWithoutResponseCharacteristicUUID.push(
-              item.characteristic
-            );
+            if(item.characteristic.includes('EC0E')){
+                this.writeWithoutResponseServiceUUID.push(item.service);
+                this.writeWithoutResponseCharacteristicUUID.push(
+                item.characteristic
+                );
+            }
           }
         }
       }
@@ -299,6 +307,18 @@ export default class BleModule {
       });
   }
 
+  convertStringToBytesArr(str){
+      String.prototype.encodeHex = function () {
+          var bytes = [];
+          for(var i = 0; i < this.length; ++i){
+              bytes.push(this.charCodeAt(i));
+          }
+          return bytes;
+      }
+      var bytearr = str.encodeHex();
+      return bytearr;
+  }
+
   /**
    * 写数据到蓝牙
    * 参数：(peripheralId, serviceUUID, characteristicUUID, data, maxByteSize)
@@ -306,8 +326,10 @@ export default class BleModule {
    * */
   write(data, index = 0) {
       //encode by base64
-    Alert.alert('data is', data);
-    var dataBytes = stringToBytes(data)
+    console.log('data is', data);
+    console.log("id is: ", this.peripheralId, "character is: ", this.writeWithResponseCharacteristicUUID[index]);
+    // var dataBytes = stringToBytes(data);
+    var dataBytes = this.convertStringToBytesArr(data);
     var fileSize = dataBytes.length;
     var markByte0 = stringToBytes("0");
     var markByte1 = stringToBytes("1");

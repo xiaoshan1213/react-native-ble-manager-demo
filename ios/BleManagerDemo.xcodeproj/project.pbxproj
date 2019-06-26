@@ -39,6 +39,11 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		A7CCC652253049589A37F874 /* libBleManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 501698F404AB4F13AD94E8FB /* libBleManager.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
+		BE46223322C2BCFE0039EAA0 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE46223222C2BCBD0039EAA0 /* libRNFetchBlob.a */; };
+		BE46224422C2C24E0039EAA0 /* FileBrowser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE46223A22C2C2010039EAA0 /* FileBrowser.framework */; };
+		BE46224522C2C24E0039EAA0 /* FileBrowser.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BE46223A22C2C2010039EAA0 /* FileBrowser.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BE46224B22C2ED3D0039EAA0 /* libRNFileSelector.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE46224322C2C21B0039EAA0 /* libRNFileSelector.a */; };
+		BE46224C22C2EDBB0039EAA0 /* Pods_RNFileSelector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE46223C22C2C2010039EAA0 /* Pods_RNFileSelector.framework */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 /* End PBXBuildFile section */
@@ -324,7 +329,56 @@
 			remoteGlobalIDString = 358F4ED71D1E81A9004DF814;
 			remoteInfo = RCTBlob;
 		};
+		BE46223122C2BCBD0039EAA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE46222D22C2BCAE0039EAA0 /* RNFetchBlob.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A15C300E1CD25C330074CB35;
+			remoteInfo = RNFetchBlob;
+		};
+		BE46223922C2C2010039EAA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE46223422C2C2010039EAA0 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5A623AE5EAEA24C90EBA1C867466622A;
+			remoteInfo = FileBrowser;
+		};
+		BE46223B22C2C2010039EAA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE46223422C2C2010039EAA0 /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0AB544C519B534253C4BCE114A25E365;
+			remoteInfo = "Pods-RNFileSelector";
+		};
+		BE46224222C2C21B0039EAA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE46223D22C2C21B0039EAA0 /* RNFileSelector.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNFileSelector;
+		};
+		BE46224622C2C24E0039EAA0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE46223422C2C2010039EAA0 /* Pods.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 2ABD7286FA80127BB84D1DB98B812CD5;
+			remoteInfo = FileBrowser;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BE46224822C2C24E0039EAA0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BE46224522C2C24E0039EAA0 /* FileBrowser.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
@@ -355,6 +409,9 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
+		BE46222D22C2BCAE0039EAA0 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
+		BE46223422C2C2010039EAA0 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = "../node_modules/react-native-file-selector/ios/Pods/Pods.xcodeproj"; sourceTree = "<group>"; };
+		BE46223D22C2C21B0039EAA0 /* RNFileSelector.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFileSelector.xcodeproj; path = "../node_modules/react-native-file-selector/ios/RNFileSelector.xcodeproj"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -372,10 +429,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE46224C22C2EDBB0039EAA0 /* Pods_RNFileSelector.framework in Frameworks */,
+				BE46224B22C2ED3D0039EAA0 /* libRNFileSelector.a in Frameworks */,
+				BE46223322C2BCFE0039EAA0 /* libRNFetchBlob.a in Frameworks */,
 				ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
+				BE46224422C2C24E0039EAA0 /* FileBrowser.framework in Frameworks */,
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
@@ -579,6 +640,9 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				BE46223D22C2C21B0039EAA0 /* RNFileSelector.xcodeproj */,
+				BE46223422C2C2010039EAA0 /* Pods.xcodeproj */,
+				BE46222D22C2BCAE0039EAA0 /* RNFetchBlob.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -640,6 +704,31 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		BE46222E22C2BCAE0039EAA0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE46223222C2BCBD0039EAA0 /* libRNFetchBlob.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE46223522C2C2010039EAA0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE46223A22C2C2010039EAA0 /* FileBrowser.framework */,
+				BE46223C22C2C2010039EAA0 /* Pods_RNFileSelector.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE46223E22C2C21B0039EAA0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE46224322C2C21B0039EAA0 /* libRNFileSelector.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -669,10 +758,12 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				BE46224822C2C24E0039EAA0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				BE46224722C2C24E0039EAA0 /* PBXTargetDependency */,
 			);
 			name = BleManagerDemo;
 			productName = "Hello World";
@@ -726,18 +817,20 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = X7GWH2FPM6;
+						DevelopmentTeam = 4JHCGU3GBV;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = X7GWH2FPM6;
+						DevelopmentTeam = 4JHCGU3GBV;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 4JHCGU3GBV;
 						ProvisioningStyle = Automatic;
 					};
 					2D02E48F1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 4JHCGU3GBV;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 2D02E47A1E0B4A5D006451C7;
 					};
@@ -748,6 +841,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -758,6 +852,10 @@
 				{
 					ProductGroup = 1A7EEF9D225B55A3008AEA8C /* Products */;
 					ProjectRef = 0B240FFD31C5448795D981E4 /* BleManager.xcodeproj */;
+				},
+				{
+					ProductGroup = BE46223522C2C2010039EAA0 /* Products */;
+					ProjectRef = BE46223422C2C2010039EAA0 /* Pods.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
@@ -806,6 +904,14 @@
 				{
 					ProductGroup = 146834001AC3E56700842450 /* Products */;
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
+				},
+				{
+					ProductGroup = BE46222E22C2BCAE0039EAA0 /* Products */;
+					ProjectRef = BE46222D22C2BCAE0039EAA0 /* RNFetchBlob.xcodeproj */;
+				},
+				{
+					ProductGroup = BE46223E22C2C21B0039EAA0 /* Products */;
+					ProjectRef = BE46223D22C2C21B0039EAA0 /* RNFileSelector.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1085,6 +1191,34 @@
 			remoteRef = ADBDB9261DFEBF0700ED6528 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		BE46223222C2BCBD0039EAA0 /* libRNFetchBlob.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFetchBlob.a;
+			remoteRef = BE46223122C2BCBD0039EAA0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BE46223A22C2C2010039EAA0 /* FileBrowser.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = FileBrowser.framework;
+			remoteRef = BE46223922C2C2010039EAA0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BE46223C22C2C2010039EAA0 /* Pods_RNFileSelector.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Pods_RNFileSelector.framework;
+			remoteRef = BE46223B22C2C2010039EAA0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		BE46224322C2C21B0039EAA0 /* libRNFileSelector.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFileSelector.a;
+			remoteRef = BE46224222C2C21B0039EAA0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -1200,6 +1334,11 @@
 			target = 2D02E47A1E0B4A5D006451C7 /* BleManagerDemo-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
+		BE46224722C2C24E0039EAA0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FileBrowser;
+			targetProxy = BE46224622C2C24E0039EAA0 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1219,7 +1358,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = X7GWH2FPM6;
+				DEVELOPMENT_TEAM = 4JHCGU3GBV;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1250,7 +1389,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = X7GWH2FPM6;
+				DEVELOPMENT_TEAM = 4JHCGU3GBV;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-ble-manager/ios/**",
@@ -1275,10 +1414,12 @@
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = X7GWH2FPM6;
+				DEVELOPMENT_TEAM = 4JHCGU3GBV;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "${BUILT_PRODUCTS_DIR}/FileBrowser";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-ble-manager/ios/**",
@@ -1290,7 +1431,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.aws.deeplens.poc.bledemo1;
 				PRODUCT_NAME = BleManagerDemo;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1299,9 +1440,11 @@
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X7GWH2FPM6;
+				DEVELOPMENT_TEAM = 4JHCGU3GBV;
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "${BUILT_PRODUCTS_DIR}/FileBrowser";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-ble-manager/ios/**",
@@ -1313,7 +1456,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = org.aws.deeplens.poc.bledemo1;
 				PRODUCT_NAME = BleManagerDemo;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1329,6 +1472,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 4JHCGU3GBV;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
@@ -1345,7 +1489,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.BleManagerDemo-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = org.aws.deeplens.poc.BleDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -1364,6 +1508,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4JHCGU3GBV;
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1379,7 +1524,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.BleManagerDemo-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = org.aws.deeplens.poc.BleDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -1396,6 +1541,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 4JHCGU3GBV;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
@@ -1430,6 +1576,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4JHCGU3GBV;
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",

@@ -96,9 +96,11 @@ export default class App extends Component {
   handleDiscoverPeripheral = data => {
     // console.log('BleManagerDiscoverPeripheral:', data);
     console.log(data.id, data.name);
-    if(data.name !== 'mymac'){
-        return;
-    }
+    // if(data.name !== 'mymac'){
+    //     return;
+    // }
+    // BluetoothManager.stopScan();
+    // this.setState({ scaning: false });
     let id; //蓝牙连接id
     let macAddress; //蓝牙Mac地址
     if (Platform.OS == "android") {
@@ -164,7 +166,7 @@ export default class App extends Component {
     let newData = [...this.deviceMap.values()];
     newData[item.index].isConnecting = true;
     this.setState({ data: newData });
-
+    console.log("connected device is: " + item.item);
     BluetoothManager.connect(item.item.id)
       .then(peripheralInfo => {
         let newData = [...this.state.data];
@@ -230,7 +232,7 @@ export default class App extends Component {
 
   write = index => {
     if (this.state.text.length == 0) {
-      this.alert("please write");
+      this.alert("please write" + index);
       return;
     }
     BluetoothManager.write(this.state.text, index)
@@ -288,6 +290,7 @@ export default class App extends Component {
 
   renderItem = item => {
     let data = item.item;
+    console.log("name is: ", data.name, " localname is: ", data.advertising.localName);
     return (
       <TouchableOpacity
         activeOpacity={0.7}
@@ -298,9 +301,9 @@ export default class App extends Component {
         style={styles.item}
       >
         <View style={{ flexDirection: "row" }}>
-          <Text style={{ color: "black" }}>{data.name ? data.name : ""}</Text>
+          <Text style={{ color: "black" }}>{data.advertising.localName ? data.advertising.localName : (data.name ? data.name : "")}</Text>
           <Text style={{ marginLeft: 50, color: "red" }}>
-            {data.isConnecting ? "连接中..." : ""}
+            {data.isConnecting ? "connecting..." : ""}
           </Text>
         </View>
         <Text>{data.id}</Text>
@@ -353,8 +356,8 @@ export default class App extends Component {
                 this.state.writeData
             )}
             {this.renderWriteView(
-                "写数据(writeWithoutResponse)：",
-                "发送",
+                "write (writeWithoutResponse)：",
+                "send",
                 BluetoothManager.writeWithoutResponseCharacteristicUUID,
                 this.writeWithoutResponse,
                 this.state.writeData
@@ -451,26 +454,40 @@ export default class App extends Component {
 
   writeFile = async () => {
     try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-        {
-          title: "write Permission",
-          message: "write permision " + "so you can write to external",
-          buttonNeutral: "Ask Me Later",
-          buttonNegative: "Cancel",
-          buttonPositive: "OK"
-        }
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        RNFetchBlob.fs
-          .createFile("/storage/emulated/0/Download/test.txt", "test12345", "utf8")
-          .then(() => {
+        if(Platform.OS == "android"){
+            const granted = await PermissionsAndroid.request(
+                PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+                {
+                title: "write Permission",
+                message: "write permision " + "so you can write to external",
+                buttonNeutral: "Ask Me Later",
+                buttonNegative: "Cancel",
+                buttonPositive: "OK"
+                }
+            );
+        
+            if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+                RNFetchBlob.fs
+                .createFile("/storage/emulated/0/Download/test.txt", "test12345", "utf8")
+                .then(() => {
+                    this.alert("success");
+                })
+                .catch(err => {
+                    this.alert("create fail");
+                });
+            }   
+        }else{
+            console.log("create file at: ", RNFetchBlob.fs.dirs.DocumentDir);
+            RNFetchBlob.fs
+            .createFile(RNFetchBlob.fs.dirs.DocumentDir+"/test.txt", "test12345", "utf8")
+            .then(() => {
             this.alert("success");
-          })
-          .catch(err => {
+            })
+            .catch(err => {
             this.alert("create fail");
-          });
+            });
       }
+
     } catch (e) {
       this.alert("write fail");
     }
@@ -478,33 +495,38 @@ export default class App extends Component {
 
   readFile = async () => {
     try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-        {
-          title: "read Permission",
-          message: "read permision " + "so you can read to external",
-          buttonNeutral: "Ask Me Later",
-          buttonNegative: "Cancel",
-          buttonPositive: "OK"
+        if(Platform.OS == 'android'){
+            const granted = await PermissionsAndroid.request(
+                PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+                {
+                  title: "read Permission",
+                  message: "read permision " + "so you can read to external",
+                  buttonNeutral: "Ask Me Later",
+                  buttonNegative: "Cancel",
+                  buttonPositive: "OK"
+                }
+              );
+              if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+                RNFetchBlob.fs
+                  .readFile("/storage/emulated/0/Download/test.txt", "utf8")
+                  .then(data => {
+                    this.alert("read data: " + data);
+                    BluetoothManager.write(data, 0)
+                      .then(() => {
+                        this.alert("send success");
+                      })
+                      .catch(err => {
+                        this.alert("send fail");
+                      });
+                  })
+                  .catch(err => {
+                    this.alert("read fail");
+                  });
+              }
+        }else{
+            //ios
         }
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        RNFetchBlob.fs
-          .readFile("/storage/emulated/0/Download/test.txt", "utf8")
-          .then(data => {
-            this.alert("read data: " + data);
-            BluetoothManager.write(data, 0)
-              .then(() => {
-                this.alert("send success");
-              })
-              .catch(err => {
-                this.alert("send fail");
-              });
-          })
-          .catch(err => {
-            this.alert("read fail");
-          });
-      }
+
     } catch (e) {
       this.alert("fail");
     }
@@ -516,21 +538,25 @@ export default class App extends Component {
       onDone: path => {
         console.log("file selected: " + path);
         this.alert(path);
+        var dir = RNFetchBlob.fs.dirs.DocumentDir;
+        if(Platform.OS == 'ios'){
+            path = dir + '/certificates-deeplens_ikuiPocbQXijNGV0JDS8pg.zip';
+        }
         RNFetchBlob.fs
           .readFile(path, 'base64')
           .then(data => {
-            this.alert("get the data:" + data);
+            console.log("get the data: ", data);
             // this.alert(data);
             BluetoothManager.write(data, 0)
               .then(() => {
-                this.alert("send success");
+                console.log("send success");
               })
               .catch(err => {
-                this.alert("send fail");
+                console.log("send fail");
               });
           })
           .catch(err => {
-            this.alert("read file fail");
+            console.log("read file fail");
           });
       },
       onCancel: () => {
